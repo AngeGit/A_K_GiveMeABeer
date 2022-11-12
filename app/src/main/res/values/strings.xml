@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">GetMeABeer</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="header_title">Give me a beer! </string>
+    <string name="header_content_desc_icon">Close app </string>
+    <string name="footer_text1">Created by</string>
+    <string name="footer_text2"> Ángeles Martín</string>
+    <string name="no_beers_in_list"> No hay cervezas que coincidan con el nombre introducido</string>
+</resources>
