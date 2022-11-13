@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -20,6 +21,7 @@ import com.jetpackcompose.getmeabeer.commontools.ui.LoadingProgressBar
 fun BeerSearcherScreen(beerSearcherViewModel: BeerSearcherViewModel) {
 
     val isLoading:Boolean by beerSearcherViewModel.isLoading.observeAsState(initial=false)
+    val hasSpacer:Boolean by beerSearcherViewModel.hasSpacer.observeAsState(initial=false)
     val activity: Activity = LocalContext.current as Activity
 
     Column(
@@ -34,6 +36,9 @@ fun BeerSearcherScreen(beerSearcherViewModel: BeerSearcherViewModel) {
                 beerSearcherViewModel.initializeBeers()
             }
             Body(Modifier.weight(1f), beerSearcherViewModel)
+            if(hasSpacer){
+                Spacer(modifier = Modifier.weight(2f))
+            }
             Footer() { beerSearcherViewModel.onFooterClick(activity) }
         }
     }

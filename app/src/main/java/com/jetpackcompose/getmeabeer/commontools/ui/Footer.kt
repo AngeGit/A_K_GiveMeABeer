@@ -18,21 +18,19 @@ import com.jetpackcompose.getmeabeer.R
 
 @Composable
 fun Footer(
-
     onFooterClicked: () -> Unit,
 ) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(colorResource(id = R.color.transparent_teal)),
-        verticalAlignment = Alignment.CenterVertically,
-
-    ) {
-        Column() {
-            FooterDivider()
-            FooterInfo(onFooterClicked)
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(colorResource(id = R.color.transparent_teal)),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column() {
+                FooterDivider()
+                FooterInfo(onFooterClicked)
+            }
         }
-    }
 }
 @Composable
 fun FooterDivider() {
