@@ -13,9 +13,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jetpackcompose.getmeabeer.R
 
 
 @Composable
@@ -33,7 +35,7 @@ fun BeerSearchTextField(
         leadingIcon = {
             Icon(
                 Icons.Default.Search,
-                contentDescription = "Search Icon",
+                contentDescription = stringResource(id = R.string.searcher_content_desc_icon) ,
                 modifier = Modifier
                     .padding(15.dp)
                     .size(24.dp)

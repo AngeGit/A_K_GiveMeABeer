@@ -42,7 +42,7 @@ fun PaintBeerItem(beer: BeersListResponse, modifier:Modifier, onItemClicked: (Be
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                beer.description?.let { PrintBeerInfo(it, Modifier.padding(8.dp),  colorResource(id = R.color.light_teal), 16) }
+                beer.description?.let { PrintBeerInfo(it, Modifier.padding(8.dp), colorResource(id = R.color.light_teal), 16) }
             }
         }
     }

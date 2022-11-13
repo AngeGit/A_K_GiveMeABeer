@@ -4,40 +4,41 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.jetpackcompose.getmeabeer.R
+import com.jetpackcompose.getmeabeer.beerdetail.ui.screen.BeerDetailScreen
+import com.jetpackcompose.getmeabeer.beerdetail.ui.screen.BeerDetailViewModel
 import com.jetpackcompose.getmeabeer.beerdetail.ui.theme.GetMeABeerTheme
+import com.jetpackcompose.getmeabeer.beersearcher.ui.BeerSearcherViewModel
 
 class DetailActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             GetMeABeerTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                    color = colorResource(id = R.color.dark_teal)
                 ) {
-                    Greeting2("Android")
+                    BeerDetailScreen(BeerDetailViewModel(),recoverBeerId())
                 }
             }
         }
     }
-}
 
-@Composable
-fun Greeting2(name: String) {
-    Text(text = "Hello $name!")
+    fun recoverBeerId(): Int {
+        return intent.extras!!.getInt(BeerSearcherViewModel.BEER_KEY)
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview2() {
     GetMeABeerTheme {
-        Greeting2("Android")
+        BeerDetailScreen(BeerDetailViewModel(), 129)
     }
 }

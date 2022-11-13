@@ -4,7 +4,7 @@ import com.jetpackcompose.getmeabeer.beersearcher.data.BeerSearcherRepository
 import com.jetpackcompose.getmeabeer.beersearcher.data.network.response.BeersListResponse
 
 
-class BeerSearcherUseCase { //Caso de uso que usa el viewModel
+class BeerSearcherUseCase { //Caso de uso que usa el viewModel del buscador
     val repository = BeerSearcherRepository()
     suspend operator fun invoke(): List<BeersListResponse>? {
         return repository.getBeers()

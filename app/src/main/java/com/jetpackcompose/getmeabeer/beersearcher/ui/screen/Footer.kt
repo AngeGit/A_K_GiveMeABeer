@@ -1,4 +1,4 @@
-package com.jetpackcompose.getmeabeer.commontools.ui
+package com.jetpackcompose.getmeabeer.beersearcher.ui.screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -20,18 +20,19 @@ import com.jetpackcompose.getmeabeer.R
 fun Footer(
     onFooterClicked: () -> Unit,
 ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(colorResource(id = R.color.transparent_teal)),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Column() {
-                FooterDivider()
-                FooterInfo(onFooterClicked)
-            }
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(colorResource(id = R.color.transparent_teal)),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Column() {
+            FooterDivider()
+            FooterInfo(onFooterClicked)
         }
+    }
 }
+
 @Composable
 fun FooterDivider() {
     Divider(
@@ -41,6 +42,7 @@ fun FooterDivider() {
             .fillMaxWidth()
     )
 }
+
 @Composable
 fun FooterInfo(onFooterClicked: () -> Unit) {
     Row(
@@ -50,14 +52,14 @@ fun FooterInfo(onFooterClicked: () -> Unit) {
     ) {
         Text(
             text = stringResource(R.string.footer_text1),
-            Modifier.padding(vertical=8.dp),
+            Modifier.padding(vertical = 8.dp),
             fontSize = 12.sp,
             color = colorResource(id = R.color.white)
         )
         Text(
             text = stringResource(R.string.footer_text2),
             Modifier
-                .padding(start=8.dp)
+                .padding(start = 8.dp)
                 .clickable { onFooterClicked() },
             fontSize = 12.sp,
             fontWeight = FontWeight.Bold,

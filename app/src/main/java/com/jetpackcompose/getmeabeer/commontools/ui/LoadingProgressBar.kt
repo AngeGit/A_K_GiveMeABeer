@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import com.jetpackcompose.getmeabeer.R
 
 @Composable
-fun LoadingProgressBar(){
+fun LoadingProgressBar() {
     Column(
         Modifier
             .fillMaxSize(),

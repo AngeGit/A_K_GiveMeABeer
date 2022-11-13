@@ -27,6 +27,22 @@ class BeerSearcherViewModel : ViewModel() {
     }
 
     //endregion SearchBar
+    //region Progressbar
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+    //endregion Progressbar
+    //region Footer
+    private val _hasSpacer = MutableLiveData<Boolean>()
+    val hasSpacer: LiveData<Boolean> = _hasSpacer
+
+    fun onFooterClick(activity: Activity) {
+        val url = "https://www.linkedin.com/in/%C3%A1ngeles-mart%C3%ADn-fontenla-0b7937175/"
+        val i = Intent(Intent.ACTION_VIEW)
+        i.data = Uri.parse(url)
+        activity.startActivity(i)
+    }
+
+    //endregion Footer
     //region RecyclerView
     //Lista modificada, filtrada:
     private val _beerList = MutableLiveData<List<BeersListResponse>>()
@@ -59,24 +75,8 @@ class BeerSearcherViewModel : ViewModel() {
         intent.putExtra(BEER_KEY, beer.id)
         activity.startActivity(intent)
     }
-
     //endregion RecyclerView
-    //region Progressbar
-    private val _isLoading = MutableLiveData<Boolean>()
-    val isLoading: LiveData<Boolean> = _isLoading
 
-    //endregion Progressbar
-    //region Footer
-    private val _hasSpacer = MutableLiveData<Boolean>()
-    val hasSpacer: LiveData<Boolean> = _hasSpacer
-
-    fun onFooterClick(activity: Activity) {
-        val url = "https://www.linkedin.com/in/%C3%A1ngeles-mart%C3%ADn-fontenla-0b7937175/"
-        val i = Intent(Intent.ACTION_VIEW)
-        i.data = Uri.parse(url)
-        activity.startActivity(i)
-    }
-    //endregion Footer
 
     companion object {
         const val BEER_KEY: String = "beerId"

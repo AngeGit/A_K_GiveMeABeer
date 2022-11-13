@@ -1,22 +1,16 @@
-package com.jetpackcompose.getmeabeer.beersearcher.ui.body
+package com.jetpackcompose.getmeabeer.beersearcher.ui.screen.body
 
 
 import android.widget.Toast
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
-
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.jetpackcompose.getmeabeer.R
-
 import com.jetpackcompose.getmeabeer.beersearcher.data.network.response.BeersListResponse
 import com.jetpackcompose.getmeabeer.beersearcher.ui.BeerSearcherViewModel
-import com.jetpackcompose.getmeabeer.beersearcher.ui.screen.body.BeerSearchTextField
 import com.jetpackcompose.getmeabeer.beersearcher.ui.screen.body.recyclerview.BeersStickyRecyclerView
 
 @Composable
