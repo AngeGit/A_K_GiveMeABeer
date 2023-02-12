@@ -16,11 +16,7 @@
         android:name=".GetMeABeerApp"
         tools:targetApi="31">
 
-        <activity
-            android:name=".beerdetail.DetailActivity"
-            android:exported="false"
-            android:label="@string/title_activity_detail"
-            android:theme="@style/Theme.GetMeABeer" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
