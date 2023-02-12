@@ -9,9 +9,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.jetpackcompose.getmeabeer.R
-import com.jetpackcompose.getmeabeer.beersearcher.data.network.response.BeersListResponse
+import com.jetpackcompose.getmeabeer.beersearcher.data.network.response.BeersListDataResponse
 import com.jetpackcompose.getmeabeer.beersearcher.ui.BeerSearcherViewModel
 import com.jetpackcompose.getmeabeer.beersearcher.ui.screen.body.recyclerview.BeersStickyRecyclerView
+import com.jetpackcompose.getmeabeer.beersearcher.ui.uimodels.BeerListUiResponse
 
 @Composable
 fun Body(modifier: Modifier, beerSearcherViewModel: BeerSearcherViewModel) {
@@ -21,7 +22,7 @@ fun Body(modifier: Modifier, beerSearcherViewModel: BeerSearcherViewModel) {
 
     if (beerSearcherViewModel.beerList.value != null) {
         if(beerSearcherViewModel.beerList.value!!.isNotEmpty()){
-            val beersStickyMap: Map<String, List<BeersListResponse>> =
+            val beersStickyMap: Map<String, List<BeerListUiResponse>> =
                 beerSearcherViewModel.beerList.value!!.groupBy { it.name.toString() }
             BeersStickyRecyclerView(beersStickyMap, beerSearcherViewModel, modifier)
         }else{

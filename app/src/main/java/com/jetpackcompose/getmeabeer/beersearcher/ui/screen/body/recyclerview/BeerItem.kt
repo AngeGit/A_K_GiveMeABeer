@@ -16,11 +16,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import com.jetpackcompose.getmeabeer.R
-import com.jetpackcompose.getmeabeer.beersearcher.data.network.response.BeersListResponse
+import com.jetpackcompose.getmeabeer.beersearcher.data.network.response.BeersListDataResponse
+import com.jetpackcompose.getmeabeer.beersearcher.ui.uimodels.BeerListUiResponse
 
 
 @Composable
-fun PaintBeerItem(beer: BeersListResponse, modifier:Modifier, onItemClicked: (BeersListResponse) -> Unit) {
+fun PaintBeerItem(beer: BeerListUiResponse, modifier:Modifier, onItemClicked: (BeerListUiResponse) -> Unit) {
     Card(
         modifier= Modifier
             .fillMaxWidth()
@@ -50,7 +51,7 @@ fun PaintBeerItem(beer: BeersListResponse, modifier:Modifier, onItemClicked: (Be
 
 
 @Composable
-fun LoadCoilImage(beer: BeersListResponse, modifier: Modifier) {
+fun LoadCoilImage(beer: BeerListUiResponse, modifier: Modifier) {
         Image(
             painter = rememberImagePainter(beer.imageUrl),
             contentDescription = beer.name,

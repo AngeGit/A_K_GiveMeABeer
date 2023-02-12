@@ -7,25 +7,32 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jetpackcompose.getmeabeer.beerdetail.DetailActivity
-import com.jetpackcompose.getmeabeer.beersearcher.data.network.response.BeersListResponse
-import com.jetpackcompose.getmeabeer.beersearcher.domain.BeerSearcherUseCase
+import androidx.navigation.NavHostController
+
+import com.jetpackcompose.getmeabeer.beersearcher.domain.GetBeersUseCase
+import com.jetpackcompose.getmeabeer.beersearcher.ui.uimodels.BeerListUiResponse
+import com.jetpackcompose.getmeabeer.core.nav.Routes
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-
-class BeerSearcherViewModel : ViewModel() {
-
-    val beersSearcherUseCase = BeerSearcherUseCase()
-
+@HiltViewModel
+class BeerSearcherViewModel @Inject constructor(
+    private val getBeers: GetBeersUseCase
+): ViewModel() {
+    //region navigation
+    private val _navigationController= MutableLiveData<NavHostController>()
+    fun setNavigationController(navigationController: NavHostController) {
+        _navigationController.value=navigationController
+    }
+    //endregion navigation
     //region SearchBar
     private val _searchText = MutableLiveData<String>("")
     val searchText: LiveData<String> = _searchText
-
     fun onSearchTextChanged(text: String) {
         _searchText.value = text
         refreshBeers()
     }
-
     //endregion SearchBar
     //region Progressbar
     private val _isLoading = MutableLiveData<Boolean>()
@@ -36,32 +43,30 @@ class BeerSearcherViewModel : ViewModel() {
     val hasSpacer: LiveData<Boolean> = _hasSpacer
 
     fun onFooterClick(activity: Activity) {
-        val url = "https://www.linkedin.com/in/%C3%A1ngeles-mart%C3%ADn-fontenla-0b7937175/"
         val i = Intent(Intent.ACTION_VIEW)
-        i.data = Uri.parse(url)
+        i.data = Uri.parse(LINKEDIN_FOOTER_URL)
         activity.startActivity(i)
     }
-
     //endregion Footer
     //region RecyclerView
     //Lista modificada, filtrada:
-    private val _beerList = MutableLiveData<List<BeersListResponse>>()
-    val beerList: LiveData<List<BeersListResponse>> = _beerList
+    private val _beerList = MutableLiveData<List<BeerListUiResponse>>()
+    val beerList: LiveData<List<BeerListUiResponse>> = _beerList
     private fun refreshBeers() {
         _beerList.value = _beerDefaultList.value!!.filter {
-            it.name!!.toLowerCase().startsWith(_searchText.value!!)
+            it.name!!.lowercase().startsWith(_searchText.value!!)
         }
         _hasSpacer.value = beerList.value!!.isEmpty()
     }
 
     //Lista control entera, no modificable, del sw:
-    private val _beerDefaultList = MutableLiveData<List<BeersListResponse>>()
-    val beerDefaultList: LiveData<List<BeersListResponse>> = _beerDefaultList
+    private val _beerDefaultList = MutableLiveData<List<BeerListUiResponse>>()
+    val beerDefaultList: LiveData<List<BeerListUiResponse>> = _beerDefaultList
 
     fun initializeBeers() {
         viewModelScope.launch {
             _isLoading.value = true
-            val list = beersSearcherUseCase()
+            val list = getBeers()
             if (list != null) {
                 _beerDefaultList.value = list.sortedBy { it.name }//seteamos la lista inicial
                 _beerList.value = _beerDefaultList.value //seteamos la lista para modificar
@@ -69,16 +74,13 @@ class BeerSearcherViewModel : ViewModel() {
             _isLoading.value = false
         }
     }
-
-    fun onBeerClicked(beer: BeersListResponse, activity: Activity) {
-        val intent = Intent(activity, DetailActivity::class.java)
-        intent.putExtra(BEER_KEY, beer.id)
-        activity.startActivity(intent)
+    fun onBeerClicked(beer: BeerListUiResponse) {
+        _navigationController.value!!.navigate(Routes.DetailScreen.createDetailScreen(beer.id!!))
     }
+
     //endregion RecyclerView
 
-
     companion object {
-        const val BEER_KEY: String = "beerId"
+        const val LINKEDIN_FOOTER_URL= "https://www.linkedin.com/in/%C3%A1ngeles-mart%C3%ADn-fontenla-0b7937175/"
     }
 }

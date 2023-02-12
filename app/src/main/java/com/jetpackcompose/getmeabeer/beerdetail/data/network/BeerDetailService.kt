@@ -1,18 +1,17 @@
 package com.jetpackcompose.getmeabeer.beerdetail.data.network
 
 
-import com.jetpackcompose.getmeabeer.beerdetail.data.network.response.BeerDetailResponse
-import com.jetpackcompose.getmeabeer.core.network.RetrofitHelper
+import com.jetpackcompose.getmeabeer.beerdetail.data.network.response.BeerDetailDataResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class BeerDetailService {
-
-    private val retrofit = RetrofitHelper.getRetrofit()
-
-    suspend fun getBeer(id: Int): List<BeerDetailResponse>? {
+class BeerDetailService @Inject constructor(
+    private val beerDetailClient:BeerDetailClient
+){
+    suspend fun getBeer(id: Int): List<BeerDetailDataResponse>? {
         return withContext(Dispatchers.IO) {
-            val response = retrofit.create(BeerDetailClient::class.java).getBeer(id)
+            val response = beerDetailClient.getBeer(id)
             response.body()
         }
     }

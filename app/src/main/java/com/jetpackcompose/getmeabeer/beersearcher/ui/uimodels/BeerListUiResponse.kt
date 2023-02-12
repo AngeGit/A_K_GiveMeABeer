@@ -1,8 +1,8 @@
-package com.jetpackcompose.getmeabeer.beersearcher.data.network.response
+package com.jetpackcompose.getmeabeer.beersearcher.ui.uimodels
 
 import com.google.gson.annotations.SerializedName
 
-data class BeersListResponse(
+data class BeerListUiResponse(
     @SerializedName("id") var id: Int? = null,
     @SerializedName("name") var name: String? = null,
     @SerializedName("description") var description: String? = null,

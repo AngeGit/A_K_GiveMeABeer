@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
 import com.jetpackcompose.getmeabeer.R
 import com.jetpackcompose.getmeabeer.beersearcher.ui.BeerSearcherViewModel
 import com.jetpackcompose.getmeabeer.beersearcher.ui.screen.body.Body
@@ -20,8 +21,9 @@ import com.jetpackcompose.getmeabeer.commontools.ui.Header
 import com.jetpackcompose.getmeabeer.commontools.ui.LoadingProgressBar
 
 @Composable
-fun BeerSearcherScreen(beerSearcherViewModel: BeerSearcherViewModel) {
-
+fun BeerSearcherScreen(
+    beerSearcherViewModel: BeerSearcherViewModel
+) {
     val isLoading: Boolean by beerSearcherViewModel.isLoading.observeAsState(initial = false)
     val hasSpacer: Boolean by beerSearcherViewModel.hasSpacer.observeAsState(initial = false)
     val activity: Activity = LocalContext.current as Activity
@@ -51,8 +53,8 @@ fun BeerSearcherScreen(beerSearcherViewModel: BeerSearcherViewModel) {
 }
 
 
-@Preview(showBackground = true)
+/*@Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    BeerSearcherScreen(BeerSearcherViewModel())
-}
+    //BeerSearcherScreen(BeerSearcherViewModel())
+}*/

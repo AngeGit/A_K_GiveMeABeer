@@ -15,14 +15,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jetpackcompose.getmeabeer.R
-import com.jetpackcompose.getmeabeer.beersearcher.data.network.response.BeersListResponse
+import com.jetpackcompose.getmeabeer.beersearcher.data.network.response.BeersListDataResponse
 import com.jetpackcompose.getmeabeer.beersearcher.ui.BeerSearcherViewModel
+import com.jetpackcompose.getmeabeer.beersearcher.ui.uimodels.BeerListUiResponse
 
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun BeersStickyRecyclerView(
-    beers: Map<String, List<BeersListResponse>>,
+    beers: Map<String, List<BeerListUiResponse>>,
     beerSearcherViewModel: BeerSearcherViewModel,
     modifier: Modifier
 ) {
@@ -50,7 +51,7 @@ fun BeersStickyRecyclerView(
                 PaintBeerItem (
                     beer = myBeer, modifier
                 ) {
-                  beerSearcherViewModel.onBeerClicked(it,activity)
+                  beerSearcherViewModel.onBeerClicked(it)
                 }
             }
         }

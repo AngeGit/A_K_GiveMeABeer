@@ -11,13 +11,16 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavHostController
 import com.jetpackcompose.getmeabeer.R
 import com.jetpackcompose.getmeabeer.commontools.ui.Header
 import com.jetpackcompose.getmeabeer.commontools.ui.LoadingProgressBar
 
 @Composable
-fun BeerDetailScreen(detailViewModel: BeerDetailViewModel, recoverBeerId: Int) {
-    val activity: Activity = LocalContext.current as Activity
+fun BeerDetailScreen(
+    detailViewModel: BeerDetailViewModel,
+    recoverBeerId: Int
+) {
     val isLoading: Boolean by detailViewModel.isLoading.observeAsState(initial = false)
 
     if (isLoading) {
@@ -35,7 +38,7 @@ fun BeerDetailScreen(detailViewModel: BeerDetailViewModel, recoverBeerId: Int) {
                     stringResource(R.string.header_title),
                     Modifier.weight(1f),
                     Icons.Default.ArrowBack
-                ) { activity.finish() }
+                ) { detailViewModel.goBack()}
                 DetailBody(detailViewModel)
             }
         }

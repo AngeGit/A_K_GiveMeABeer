@@ -16,10 +16,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import com.jetpackcompose.getmeabeer.R
-import com.jetpackcompose.getmeabeer.beerdetail.data.network.response.BeerDetailResponse
+import com.jetpackcompose.getmeabeer.beerdetail.data.network.response.BeerDetailDataResponse
+import com.jetpackcompose.getmeabeer.beerdetail.ui.uimodels.BeerDetailUiData
 
 @Composable
-fun ItemBeer(beer: BeerDetailResponse) {
+fun ItemBeer(beer: BeerDetailUiData) {
     Card(
         border = BorderStroke(2.dp, colorResource(id = R.color.transparent_teal)),
         modifier = Modifier
